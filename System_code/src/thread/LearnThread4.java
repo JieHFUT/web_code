@@ -35,10 +35,5 @@ public class LearnThread4 {
          * false
          * true ------ 瞬间的状态
          */
-
-
-
-
-
     }
 }
