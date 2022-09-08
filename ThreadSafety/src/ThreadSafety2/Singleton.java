@@ -9,6 +9,8 @@ package ThreadSafety2;
  */
 public class Singleton {
 
+
+    //只能实例化一个对象的类
     private static Singleton instance = new Singleton();
 
 
