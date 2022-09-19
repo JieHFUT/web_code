@@ -8,11 +8,7 @@ package ThreadSafety2;
  * Time: 23:49
  */
 public class Demo6 {
-
-
-
-
-
+    //模拟实现阻塞队列
 
 
 
