@@ -1,4 +1,4 @@
-package ThreadSafety3;
+package ThreadSafety4;
 
 /**
  * Created with IntelliJ IDEA.
