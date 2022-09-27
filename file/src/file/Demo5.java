@@ -20,6 +20,7 @@ public class Demo5 {
         char[] buffer = new char[100];
         int len = reader.read(buffer);
         for (int i = 0; i < len; i++) {
+
             System.out.print(buffer[i]);
         }
         reader.close();
