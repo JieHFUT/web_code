@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .screen {
+            width: 200px;
+            height: 100px;
+            margin: 0 auto;
+            background-color: grey;
+            color: white;
+            font-size: 30px;
+            line-height: 100px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .add-btn {
+            margin: 10px auto;
+            width: 200px;
+            height: 100px;
+            font-size: 30px;
+            line-height: 100px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="screen">0</div>
+    <button class="add-btn">+</button>
+
+    <script>
+        let screen = document.querySelector('.screen');
+        let addBtn = document.querySelector('.add-btn');
+        addBtn.onclick = function() {
+            // 1. 拿到 screen 里面的数值. 
+            let number = screen.innerHTML;
+            // 2. 针对 number 加一
+            //    由于 innerHTML 拿到的结果是 string , 要想进行算术运算, 需要把 string => number
+            number = parseInt(number);
+            number += 1;
+            // 3. 写回到元素中. 
+            screen.innerHTML = number;
+        }
+    </script>
+</body>
+</html>

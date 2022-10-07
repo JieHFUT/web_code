@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="image/male.png">
+
+    <script>
+        let img = document.querySelector('img');
+        img.onclick = function() {
+            console.dir(img);
+
+            if (img.src.indexOf('female.png') >= 0) {
+                img.src = 'image/male.png';
+            } else if (img.src.indexOf('male.png') >= 0) {
+                img.src = 'image/female.png'
+            }
+        }
+    </script>
+</body>
+</html>

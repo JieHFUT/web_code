@@ -1,0 +1,43 @@
+.blog-edit-container {
+    width: 1000px;
+    height: calc(100% - 50px);
+    margin: 0 auto;
+}
+
+.blog-edit-container .title {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#title {
+    height: 40px;
+    width: 895px;
+    font-size: 15px;
+    padding-left: 5px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+#submit {
+    height: 40px;
+    width: 100px;
+    font-size: 15px;
+    background-color: rgba(255, 235, 181, 0.8);
+    color: black;
+    border-radius: 10px;
+}
+
+#submit:active {
+    background-color: #6ac96a;
+}
+
+#editor {
+    border-radius: 10px;
+    opacity: 80%;
+
+}
+
+
