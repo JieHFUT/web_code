@@ -23,5 +23,10 @@
         </dependency>
 
     </dependencies>
-
+    <!--  打包成war包  -->
+    <packaging>war</packaging>
+    <!--  给打包的war包重新命名  -->
+    <build>
+        <finalName>first_servlet</finalName>
+    </build>
 </project>
