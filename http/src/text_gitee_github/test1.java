@@ -10,12 +10,13 @@ package text_gitee_github;
 public class test1 {
     public static void main(String[] args) {
 
-        System.out.println("test gitee and github");
-        System.out.println("test2");
-        System.out.println("test4");
-        System.out.println("test4");
-        System.out.println("test4");
-        System.out.println("test4");
-        System.out.println("test4");
+        int i = 1;
+        int j = i++;
+        // i = i++;
+        System.out.println(i);
+        System.out.println(j);
+        i = 1;
+        i=++i;
+        System.out.println(i);
     }
 }
