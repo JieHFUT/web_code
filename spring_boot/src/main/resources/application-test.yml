@@ -3,6 +3,18 @@ server:
   port: 9999
 
 
+
+logging:
+  file:
+    # 通过日志的名称
+    # name: springboot.log
+    # 通过日志的路径
+    path: E:\code\web_code\spring_boot  #spring.log
+  level:
+    root: warn
+    com:
+      jiehfut: info
+
 spring:
   datasource:
     url: jdbc:mysql://yyyy:3306/testdb?characterEncoding=utf8

@@ -10,6 +10,46 @@ server:
 #    password: 959452
 
 
+# 日志的保存名称
+
+#logging:
+#  file:
+#    # 通过日志的名称
+#    # name: springboot.log
+#    # 通过日志的路径
+#    path: E:\code\web_code\spring_boot  #spring.log
+#  level:
+#    root: warn
+#    com:
+#      jiehfut: trace
+
+
+
 spring:
   profiles:
     active: dev    #test   #prod (可设置，可变)
+
+
+
+student:
+  id: 1
+  name: zhangsan
+  age: 18
+
+# 对象的行内写法
+student2: {id: 2,name: lisi,age: 20}
+
+# 集合
+mylist:
+  dbtype:
+    - mysql
+    - sqlserver
+    - db2
+
+
+mylist2: {dbtype: [mysql2,sqlserver2]}
+
+
+
+
+
