@@ -1,0 +1,10 @@
+# 这是测试环境的配置
+server:
+  port: 9999
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://yyyy:3306/testdb?characterEncoding=utf8
+    username: root
+    password: 959452
