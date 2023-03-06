@@ -1,0 +1,12 @@
+# 数据库连接配置
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mycnblog?characterEncoding=utf8&useSSL=false
+    username: root
+    password: 959452
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+# 配置 mybatis xml 的⽂件路径，在 resources/mapper 创建所有表的 xml ⽂件
+mybatis:
+  mapper-locations: classpath:mybatis/**Mapper.xml
