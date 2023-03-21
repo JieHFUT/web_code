@@ -1,0 +1,67 @@
+/*总二*/
+#total2
+{
+    margin: 0 auto;
+    width: 1400px;
+    border-top: 5px solid #F0F2F5;
+    border-bottom: 50px solid #F0F2F5;
+    border-left: 1px solid #F0F2F5;
+    border-right: 1px solid #F0F2F5;
+
+}
+/*第二张表*/
+#table2
+{
+    border: none;
+    width: 1200px;
+}
+/*第二张表的行格式*/
+.table2Tr
+{
+    margin: 15px;
+    padding-top: 50px;
+}
+/*第二张表的第一种单元格格式*/
+.table2Td1
+{
+    width: 120px;
+    /*border: solid;*/
+    color: darkslategrey;
+}
+/*第二张表的第二种单元格格式*/
+.table2Td2
+{
+    width: 430px;
+    padding-left: 5px;
+    /*border: solid;*/
+}
+/*第二张表的第三种单元格格式*/
+.table2Td3
+{
+    padding-left: 5px;
+}
+/*第二张表中的输入框格式*/
+#table2 input
+{
+    width: 420px;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    padding-left: 15px;
+}
+/*第二张表中的p（段落）的格式*/
+#table2 p
+{
+    color: red;
+    display: inline;
+}
+/*提交的那个按钮*/
+#submit1
+{
+    height: 35px;
+    width: 80px;
+    border-radius: 5px;
+    color: white;
+    background-color: #5899ce;
+}
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书籍信息管理中心</title>
+    <link rel="stylesheet" href="css/add.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="total2">
+        <div class="top">
+            书籍信息管理中心
+            <p style="display: inline; color: #999999"> > 书籍信息管理中心 </p>
+        </div>
+        <div class="main" align="center">
+            <table id="table2" cellspacing="18px">
+                <tr class="table2Tr">
+                    <td class="table2Td1" align="right"><p>*</p>书籍名称</td>
+                    <td class="table2Td2"><input id="name" type="text" placeholder="书籍名称" /></td>
+                    <td class="table2Td1" align="right"><p>*</p>作者姓名</td>
+                    <td class="table2Td2"><input id="id" type="text" placeholder="作者姓名" /></td>
+                </tr>
+                <tr class="table2Tr">
+                    <td class="table2Td1" align="right">出版社</td>
+                    <td class="table2Td2"><input id="title" type="text" placeholder="出版社" /></td>
+                    <td class="table2Td1" align="right">书籍单价</td>
+                    <td class="table2Td2"><input id="address" type="text" placeholder="书籍单价" /></td>
+                </tr>
+                <tr class="table2Tr">
+                    <td class="table2Td1" align="right">书籍版次</td>
+                    <td class="table2Td3" colspan="3"><input id="remarks" type="text" placeholder="书籍版次" style="width: 1021px" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input id="submit1" style="height: 35px; width: 80px;" type="button" value="提交" onclick="submit1()" /></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+<script>
+    function submit1(){
+        // 获取输入的值
+        var title = document.getElementById("name").value;
+        var author = document.getElementById("id").value;
+        var press = document.getElementById("title").value;
+        var price = document.getElementById("address").value;
+        var edition = document.getElementById("remarks").value;
+
+        // 将值发送给后端
+        jQuery.ajax({
+            url:"2020210626/add",
+            type:"POST",
+            data:{
+                "title":title,
+                "author":author,
+                "press":press,
+                "price":price,
+                "edition":edition
+            },
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success:function(result){
+                if(result != null){
+                    alert("添加成功！")
+                }else {
+                    alert("添加失败，请重新尝试！");
+                }
+            }
+        })
+    }
+</script>
+
+</html>

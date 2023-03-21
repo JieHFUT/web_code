@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiehfut.mycnblog.mapper.UserMapper">
+    <insert id="register">
+        insert into userinfo(username, password)
+        values (#{username}, #{password})
+    </insert>
+
+    <select id="login" resultType="com.jiehfut.mycnblog.model.UserInfo">
+        select *
+        from userinfo
+        where username = #{username}
+          and password = #{password}
+    </select>
+
+    <select id="getMyInfo" resultType="com.jiehfut.mycnblog.model.UserInfo">
+        select userinfo.*, sum(articleinfo.id) as articlenumber
+        from userinfo
+                 inner join articleinfo on userinfo.id = articleinfo.uid
+        where userinfo.id = #{id};
+    </select>
+
+</mapper>

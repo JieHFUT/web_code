@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>书籍信息管理中心</title>
+        <link rel="stylesheet" href="css/query.css">
+        <script src="js/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="total1">
+            <div class="top">
+                书籍信息管理中心
+            </div>
+            <div class="main">
+                <div>
+                    <table id="table2" cellspacing="0px">
+                        <tr class="tableTitle">
+                            <td class="col1">书籍名称</td>
+                            <td class="col2">作者姓名</td>
+                            <td class="col3">出版社</td>
+                            <td class="col4">书籍单价</td>
+                            <td class="col5">书籍版次</td>
+                        </tr>
+
+                    </table>
+                    <table id="table1" cellspacing="0px">
+                        <tr class="tableTitle">
+                            <td class="col1">书籍名称</td>
+                            <td class="col2">作者姓名</td>
+                            <td class="col3">出版社</td>
+                            <td class="col4">书籍单价</td>
+                            <td class="col5">书籍版次</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        // 接收在index.html页面跳转时候发送的信息，根据查询信息像后端查询数据显示在query.html页面
+        // 接收参数
+        function getRequest() {
+            var url = location.search; //获取url中"?"符后的字串 ('?selected=书籍名称&queryInfo=111')
+            var theRequest = new Object();
+            if(url.indexOf('?') != -1) {
+                // substr()方法返回从参数值开始到结束的字符串（selected=书籍名称&queryInfo=111）
+                var str = url.substr(1);
+                var strs = str.split('&');
+                for(var i=0; i < strs.length; i++) {
+                    theRequest[strs[i].split('=')[0]] = unescape(strs[i].split('=')[1]);
+                }
+            }
+            return theRequest;
+        }
+
+        console.log(getRequest());
+        var selected = getRequest().selected;
+        var queryInfo = getRequest().queryInfo;
+
+        alert(selected);
+        alert(queryInfo);
+
+        // 像后端发送 ajax 请求查询的结果
+        function initList(){
+        jQuery.ajax({
+            url:"/2020210626/query",
+            type:"POST",
+            data:{
+                "selected": selected,
+                "queryInfo":queryInfo
+            },
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success:function(result){
+                console.dir(result);
+                if(result != null) {
+                    // 有书籍信息
+                    var html = "";
+                    result.forEach(function(element){
+                        html+='<tr class="tableTitle">'+
+                            '<td class="col1">'+element.title+'</td>'+
+                            '<td class="col2">'+element.author+'</td>'+
+                            '<td class="col3">'+element.press+'</td>'+
+                            '<td class="col4">'+element.price+'</td>'+
+                            '<td class="col5">'+element.edition+'</td>'+
+                            '</tr>';
+                        // console.log(html);
+                        jQuery("#table1").html(html);
+                    });
+                }
+            }
+        })
+    }
+    initList();
+
+
+
+    </script>
+
+</html>
+

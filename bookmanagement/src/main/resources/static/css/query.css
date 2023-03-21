@@ -1,0 +1,78 @@
+/*总一*/
+#total1
+{
+    margin: 0 auto;
+    width: 1400px;
+    border-top: 5px solid #F0F2F5;
+    border-bottom: 50px solid #F0F2F5;
+    border-left: 1px solid #F0F2F5;
+    border-right: 1px solid #F0F2F5;
+    display: block;
+}
+/*头*/
+.top
+{
+    height: 35px;
+    border-bottom: 1px solid #F0F2F5;
+    padding-left: 25px;
+    padding-top: 15px;
+    /* border: solid; */
+}
+/*主体*/
+.main
+{
+    padding-top: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 30px;
+}
+/*第一张表*/
+#table1
+{
+    border: 1px lightgrey solid;
+    width: 1350px;
+}
+/*第二张表*/
+#table2
+{
+    border: 1px lightgrey solid;
+    width: 1350px;
+}
+/*表头*/
+.tableTitle
+{
+    background-color: lightsteelblue;
+    font-weight: bold;
+    align: center;
+}
+/*第一张表中的单元格格式*/
+#table1 td
+{
+    height: 35px;
+    border: 1px lightgrey solid;
+}
+/*第一列格式*/
+.col1
+{
+    width: 220px;
+}
+/*第二列格式*/
+.col2
+{
+    width: 150px;
+}
+/*第三列格式*/
+.col3
+{
+    width: 440px;
+}
+/*第四列格式*/
+.col4
+{
+    width: 220px;
+}
+/*第五列格式*/
+.col5
+{
+    width: 120px;
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiehfut.bookmanagement.mapper.BookMapper">
+
+    <select id="getBookList" resultType="com.jiehfut.bookmanagement.model.BookInfo">
+        select * from book
+    </select>
+
+    <select id="getBookByTitle" resultType="com.jiehfut.bookmanagement.model.BookInfo">
+        select * from book where title = #{title}
+    </select>
+
+    <select id="getBookByAuthor" resultType="com.jiehfut.bookmanagement.model.BookInfo">
+        select * from book where author = #{author}
+    </select>
+
+    <select id="getBookByPress" resultType="com.jiehfut.bookmanagement.model.BookInfo">
+        select * from book where press = #{press}
+    </select>
+
+    <select id="getBookInfoById" resultType="com.jiehfut.bookmanagement.model.BookInfo">
+        select * from book where id = #{id}
+    </select>
+
+    <update id="update">
+        update book set title = #{bookInfo.title},
+                        author = #{bookInfo.author},
+                        press = #{bookInfo.press},
+                        price = #{bookInfo.price},
+                        edition = #{bookInfo.edition}
+        where id = #{bookInfo.id}
+    </update>
+
+    <insert id="add">
+        insert into book(title,author,press,price,edition) values (
+            #{bookInfo.title},
+            #{bookInfo.author},
+            #{bookInfo.press},
+            #{bookInfo.price},
+            #{bookInfo.edition}
+        )
+    </insert>
+
+    <delete id="delBookById">
+        delete from book where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书籍信息管理中心</title>
+    <link rel="stylesheet" href="css/update.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="total2">
+        <div class="top">
+            书籍信息管理中心
+            <p style="display: inline; color: #999999"> > 书籍信息管理中心 </p>
+        </div>
+        <div class="main" align="center">
+            <table id="table2" cellspacing="18px">
+                <tr class="table2Tr">
+                    <td class="table2Td1" align="right"><p>*</p>书籍名称</td>
+                    <td class="table2Td2"><input id="title" type="text"/></td>
+                    <td class="table2Td1" align="right"><p>*</p>作者姓名</td>
+                    <td class="table2Td2"><input id="author" type="text"/></td>
+                </tr>
+                <tr class="table2Tr">
+                    <td class="table2Td1" align="right">出版社</td>
+                    <td class="table2Td2"><input id="press" type="text"/></td>
+                    <td class="table2Td1" align="right">书籍单价</td>
+                    <td class="table2Td2"><input id="price" type="text"/></td>
+                </tr>
+                <tr class="table2Tr">
+                    <td class="table2Td1" align="right">书籍版次</td>
+                    <td class="table2Td3" colspan="3"><input id="edition" type="text" style="width: 1021px" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input id="submit1" style="height: 35px; width: 80px;" type="button" value="提交" onclick="updateBookInfoById()" /></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+<script>
+    // 接收在index.html页面跳转时候发送的信息，根据查询信息像后端查询数据显示在update.html页面
+    // 接收参数
+    function getRequest() {
+        var url = location.search; //获取url中"?"符后的字串 ('?selected=书籍名称&queryInfo=111')
+        var theRequest = new Object();
+        if(url.indexOf('?') != -1) {
+            // substr()方法返回从参数值开始到结束的字符串（selected=书籍名称&queryInfo=111）
+            var str = url.substr(1);
+            var strs = str.split('&');
+            for(var i=0; i < strs.length; i++) {
+                theRequest[strs[i].split('=')[0]] = unescape(strs[i].split('=')[1]);
+            }
+        }
+        return theRequest;
+    }
+    
+
+    console.log(getRequest());
+
+    var id = getRequest().id;
+    var title = getRequest().title;
+    var author = getRequest().author;
+    var price = getRequest().price;
+    var press = getRequest().press;
+    var edition = getRequest().edition;
+
+    // alert(author);
+
+    // 将得到的数据显示在修改页面上
+    jQuery("#title").value = title;
+    jQuery("#author").html = author;
+    jQuery("#price").html(price);
+    jQuery("#press").contents = press;
+    jQuery("#edition").text = edition;
+
+    // 修改以后像后端发送 ajax 请求由ID更改该书籍信息
+    function updateBookInfoById(){
+        // 获取更改以后的数据
+        title = document.getElementById("title").value;
+        author = document.getElementById("author").value;
+        price = document.getElementById("price").value;
+        press = document.getElementById("press").value;
+        edition = document.getElementById("edition").value;
+
+        jQuery.ajax({
+            url:"/2020210626/update",
+            type:"POST",
+            data:{
+                "id":id,
+                "title":title,
+                "author":author,
+                "price":price,
+                "press":press,
+                "edition":edition
+            },
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success:function(result){
+                if(result != null){
+                    alert("更改成功！")
+                }
+            }
+        })
+    }
+
+</script>
+
+</html>

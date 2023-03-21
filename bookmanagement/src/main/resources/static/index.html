@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书籍信息管理中心</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="total1">
+        <div class="top">
+            书籍信息管理中心
+        </div>
+        <div class="main">
+            <div>
+                <select id="s" class="sel">
+                    <option selected>书籍名称</option>
+                    <option>作者姓名</option>
+                    <option>出版社</option>
+                </select>
+                <input id="search" class="inp" type="text" placeholder="请输入查询条件"/>
+                <button id="qstnMark" onclick="search()">Q</button>
+                <input id="addBookInfo" type="button" value="新增书籍信息" onclick="addBookInfo()" />
+            </div>
+            <div>
+                <table id="table1" cellspacing="0px">
+                    <tr class="tableTitle">
+                        <td class="col1">书籍名称</td>
+                        <td class="col2">作者姓名</td>
+                        <td class="col3">出版社</td>
+                        <td class="col4">书籍单价</td>
+                        <td class="col5">书籍版次</td>
+                        <td class="col6" align="center">操作</td>
+                    </tr>
+                    
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    // 在这里初始化登入页面的书籍信息
+    function initList(){
+        jQuery.ajax({
+            url:"/2020210626/booklist",
+            type:"POST",
+            data:{},
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success:function(result){
+                console.dir(result);
+                if(result != null) {
+                    // 有书籍信息
+                    result.forEach(function(element){
+                        // alert(element.author);
+                        // 获取书籍的ID信息
+                        var bookId = element.id;
+
+                        title = document.createTextNode(element.title);
+                        author = document.createTextNode(element.author);
+                        price = document.createTextNode(element.price);
+                        press = document.createTextNode(element.press);
+                        edition = document.createTextNode(element.edition);
+
+                        // 创建tr
+                        var tr = document.createElement("tr");
+                        // 创建td，并赋于class和值（创建单元格，并输入值）
+                        var td1 = document.createElement("td");
+                        td1.className = "col1";
+                        td1.appendChild(title);
+
+                        var td2 = document.createElement("td");
+                        td2.className = "col2";
+                        td2.appendChild(author);
+
+                        var td3 = document.createElement("td");
+                        td3.className = "col3";
+                        td3.appendChild(price);
+
+                        var td4 = document.createElement("td");
+                        td4.className = "col4";
+                        td4.appendChild(press);
+
+                        var td5 = document.createElement("td");
+                        td5.className = "col5";
+                        td5.appendChild(edition);
+
+                        var td6 = document.createElement("td");
+                        td6.className = "col6";
+                        td6.style.textAlign = "center";
+
+                        // 创建input，并设置按键反应（编辑、删除 按钮）
+                        var input1 = document.createElement('input');
+                        var input2 = document.createElement('input');
+                        input1.className = bookId;
+                        input1.setAttribute('type','button');
+                        input1.setAttribute('value','编辑');
+                        input1.setAttribute('onclick','update(this.className)');
+                        input1.id = 'update';
+
+
+                        input2.className = bookId;
+                        input2.id = 'delete';
+                        input2.setAttribute('type','button');
+                        input2.setAttribute('value','删除');
+                        input2.setAttribute('onclick','del(this.className)');
+                        td6.appendChild(input1);
+                        td6.appendChild(input2);
+
+
+                        // 获取table1
+                        var table = document.getElementById("table1");
+                        // 将tr加入table中
+                        table.appendChild(tr);
+                        // 将td依次加入tr中
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        tr.appendChild(td4);
+                        tr.appendChild(td5);
+                        tr.appendChild(td6);
+
+                    });
+                }
+            }
+        })
+    }
+    initList();
+
+    function addBookInfo(){
+        location.href = "add.html";
+    }
+    function search(){
+
+        // 获取在查询时选择的查询项和查询内容
+        // var selected = $("#s option:selected");
+        var selected = escape(document.getElementById("s").value);
+        var queryInfo = escape(document.getElementById("search").value);
+        // 得到查询参数后跳转到 query.html 显示查询结果
+        location.href = "query.html?selected="+selected+"&queryInfo="+queryInfo;
+
+    }
+
+
+    // 删除
+    function del(id){
+        jQuery.ajax({
+            url:"/2020210626/del",
+            type:"POST",
+            data:{
+                "id":id
+            },
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success:function(result){
+                if(result != null &&result == 1) {
+                    alert("删除成功！");
+                    location.reload();
+                }else {
+                    alert("删除失败，请从新尝试！");
+                }
+            }
+
+        })
+        
+    }
+
+    // 编辑 update(id) 
+    function update(id){
+        // 先获取该 id 书籍的 bookinfo 信息
+        jQuery.ajax({
+            url:"/2020210626/getbookinfobyid",
+            type:"POST",
+            data:{
+                "id":id
+            },
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+
+            success:function(result){
+                // result 是一本书籍的全部信息 bookinfo
+                var title = escape(result.title);
+                var author = escape(result.author);
+                var price = escape(result.price);
+                var press = escape(result.press);
+                var edition = escape(result.edition);
+                location.href = "update.html?id="+id+"&title="+title+"&author="+author+"&price="+price+"&press="+press+"&edition="+edition;
+            }
+        })
+        
+    }
+
+</script>
+</html>
